@@ -48,6 +48,7 @@ return {
           "the_odyssey",
           "grand_budapest",
           "the_martian",
+          "desert",
         },
         livePreview = true, -- see the theme change as you move through the list
       })
