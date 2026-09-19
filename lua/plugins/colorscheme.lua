@@ -49,6 +49,10 @@ return {
           "grand_budapest",
           "the_martian",
           "desert",
+          "GruberDarker",
+          "TwelveAngryMen",
+          "DarkIsTheNight",
+          "odyssey",
         },
         livePreview = true, -- see the theme change as you move through the list
       })
