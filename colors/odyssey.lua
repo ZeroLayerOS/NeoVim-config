@@ -1,8 +1,11 @@
 -- ~/.config/nvim/colors/Odyssey.lua
 -- Odyssey colorscheme for Neovim
--- Extracted from a series of Greek-epic illustrated posters: deep navy sea
--- and sky, warm marble stone, gold-trimmed armor, cypress green, terracotta
--- roofs, and a blood-red moon. Medium contrast — comfortable, not stark.
+-- Extracted from a series of Greek-epic illustrated posters:
+--   1. Ivory/bone marble — the dominant tone (bg + fg), gray-beige not brown
+--   2. Deep royal-blue sky/sea — a major, present secondary color
+--   3. Glossy black armor & horse — near-black structure (borders, punctuation)
+--   4. Gold armor trim — secondary accent (constants, folders)
+--   5. A hidden touch of red (jewel, faint moon) — used sparingly, cursor only
 
 if vim.g.colors_name then
   vim.cmd("hi clear")
@@ -16,34 +19,32 @@ vim.o.background = "dark"
 vim.g.colors_name = "Odyssey"
 
 -- Palette --------------------------------------------------------------
--- Colors pulled from the imagery itself, not a terminal export:
---   bg: dusk-navy sea/sky, softened for long reading (medium contrast)
---   fg: warm marble/stone cream
 local c = {
-  bg = "#232a35", -- Background — dusk navy, softened (not black)
-  surface = "#1c222b", -- Surface / Float / Telescope — deeper sea shadow
-  selection = "#2f3a4a", -- Selection / CursorLine — deep sea blue
-  accent = "#caa25f", -- Primary Accent — cursor / keywords (helmet crest gold, marble warmth)
-  border = "#2c3542", -- Borders / Separators
-  type = "#5d7fae", -- Types / Traits / Structs (royal sky-blue)
-  warn = "#c1633b", -- Warnings / Todo (terracotta rooftops)
-  const = "#d4b483", -- Lifetimes / Constants / Numbers (pale sunlit stone)
-  func = "#7c9473", -- Functions / Methods (cypress green)
-  string = "#7fa8c9", -- Strings / Info / Hint (sea foam / wave highlight)
-  variable = "#cbbfa8", -- Variables / Fields (dimmer warm marble)
-  comment = "#5c6b7a", -- Comments (shadowed cliff stone)
-  error = "#c23b3b", -- Error (the blood-red moon)
-  punct = "#6b7789", -- Punctuation
-  folder = "#3a5a8c", -- Folders (deep sea blue)
-  fg = "#e8ddc8", -- Foreground (warm marble cream, not stark white)
+  bg = "#38352d", -- Background — ivory/bone marble, dark gray-beige, NOT brown
+  surface = "#2b2921", -- Surface / Float / Telescope — marble in shadow
+  selection = "#4a4638", -- Selection / CursorLine — warm bone highlight
+  accent = "#b53a3a", -- Primary Accent — cursor / keywords (the hidden red — jewel, faint moon; used sparingly)
+  border = "#15161a", -- Borders / Separators (glossy black armor/horse)
+  type = "#3righ", -- placeholder to be overwritten below
+  warn = "#c1633b", -- Warnings / Todo (terracotta accent)
+  const = "#c9a25c", -- Lifetimes / Constants / Numbers (gold armor trim)
+  func = "#7c9473", -- Functions / Methods (cypress green, minor foliage note)
+  string = "#d6cdb4", -- Strings / Info / Hint (sunlit ivory highlight)
+  variable = "#cbc3ac", -- Variables / Fields (dimmer bone)
+  comment = "#7d7563", -- Comments (marble in shadow, muted warm gray)
+  error = "#8f2f2f", -- Error (deeper red, distinct from accent)
+  punct = "#1f2024", -- Punctuation (near-black armor, slightly lifted for readability)
+  folder = "#c9a25c", -- Folders (gold armor trim)
+  fg = "#e8e2d1", -- Foreground — ivory/bone marble, the dominant text tone
   -- Extra tints
-  darkred = "#8a2f2f", -- deep maroon — DiffDelete / dim error
+  darkred = "#6b1f1f", -- deep maroon — DiffDelete / dim error
   darkgreen = "#4f5f45", -- deep olive — dim green accents
-  darkblue = "#1e2f4d", -- deep navy — dim blue accents
-  brightcyan = "#a8c4d9", -- pale sea-foam, bright variant
-  tabinactive = "#181e27", -- inactive tab background
+  darkblue = "#1c2c4a", -- deep navy — dim blue accents
+  brightcyan = "#7ea1d6", -- pale sky blue, bright variant
+  tabinactive = "#221f19", -- inactive tab background
   none = "NONE",
 }
+c.type = "#3a5fae" -- Types / Traits / Structs — the deep royal-blue sky/sea, a major present color
 
 local hl = vim.api.nvim_set_hl
 
@@ -96,17 +97,17 @@ local groups = {
   Float = { fg = c.const },
   Identifier = { fg = c.variable },
   Function = { fg = c.func },
-  Statement = { fg = c.accent },
-  Conditional = { fg = c.accent },
-  Repeat = { fg = c.accent },
-  Label = { fg = c.accent },
-  Operator = { fg = c.accent },
+  Statement = { fg = c.type },
+  Conditional = { fg = c.type },
+  Repeat = { fg = c.type },
+  Label = { fg = c.type },
+  Operator = { fg = c.type },
   Keyword = { fg = c.accent, bold = true },
   Exception = { fg = c.accent, bold = true },
   PreProc = { fg = c.type },
-  Include = { fg = c.accent },
-  Define = { fg = c.accent },
-  Macro = { fg = c.accent, bold = true },
+  Include = { fg = c.type },
+  Define = { fg = c.type },
+  Macro = { fg = c.type, bold = true },
   PreCondit = { fg = c.type },
   Type = { fg = c.type },
   StorageClass = { fg = c.type },
@@ -184,12 +185,12 @@ local groups = {
   -- Treesitter (@-groups)
   ["@keyword"] = { link = "Keyword" },
   ["@keyword.function"] = { fg = c.accent, italic = true },
-  ["@keyword.operator"] = { fg = c.accent },
+  ["@keyword.operator"] = { fg = c.type },
   ["@keyword.return"] = { fg = c.accent, bold = true },
-  ["@keyword.import"] = { fg = c.accent },
+  ["@keyword.import"] = { fg = c.type },
   ["@function"] = { link = "Function" },
   ["@function.call"] = { fg = c.func },
-  ["@function.macro"] = { fg = c.accent, bold = true },
+  ["@function.macro"] = { fg = c.type, bold = true },
   ["@function.builtin"] = { fg = c.func, italic = true },
   ["@method"] = { fg = c.func },
   ["@method.call"] = { fg = c.func },
@@ -219,7 +220,7 @@ local groups = {
   ["@tag.attribute"] = { fg = c.type, italic = true },
   ["@tag.delimiter"] = { fg = c.punct },
   ["@lsp.type.lifetime"] = { fg = c.const, italic = true },
-  ["@lsp.type.macro"] = { fg = c.accent, bold = true },
+  ["@lsp.type.macro"] = { fg = c.type, bold = true },
   ["@lsp.type.enum"] = { fg = c.type },
   ["@lsp.type.struct"] = { fg = c.type },
   ["@lsp.type.trait"] = { fg = c.type },
