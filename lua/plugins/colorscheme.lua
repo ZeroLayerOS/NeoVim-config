@@ -53,6 +53,12 @@ return {
           "TwelveAngryMen",
           "DarkIsTheNight",
           "odyssey",
+          "TempleOS",
+          "nvim_default",
+          "farout",
+          "feynman",
+          "retroposter",
+          "yujin_ink",
         },
         livePreview = true, -- see the theme change as you move through the list
       })
